@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Privacy · Bindly</title>
+<meta name="description" content="Informativa sulla privacy di Bindly.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 64 64%22%3E%3Crect width=%2264%22 height=%2264%22 rx=%2214%22 fill=%22%23000%22/%3E%3Ctext x=%2232%22 y=%2246%22 font-family=%22Arial,sans-serif%22 font-weight=%22900%22 font-size=%2240%22 text-anchor=%22middle%22 fill=%22%23fff%22%3EB%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800;900&display=swap">
+<style>
+  /* Stesso stile della home: nero, bianco, argento sul nome. Colonna di lettura stretta, indice a lato su schermi larghi. */
+  :root {
+    --bg: #000; --surface: #0f0f0f; --line: #262626; --text: #fff; --body: #d6d6d6; --dim: #9a9a9a; --up: #2ecc71;
+    --font: "Inter", -apple-system, "Segoe UI", Roboto, sans-serif;
+    color-scheme: dark;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  html, body { margin: 0; background: var(--bg); color: var(--body); font: 16px/1.7 var(--font); -webkit-font-smoothing: antialiased; }
+  a { color: var(--text); text-underline-offset: 3px; }
+  a:focus-visible { outline: 2px solid #fff; outline-offset: 3px; border-radius: 2px; }
+  .wrap { max-width: 1040px; margin: 0 auto; padding: 0 24px; }
+
+  header { padding: 64px 0 40px; border-bottom: 1px solid var(--line); }
+  .brand { font-weight: 900; font-size: 22px; letter-spacing: -0.04em; text-decoration: none;
+    background: linear-gradient(100deg, #9c9c9c, #fff 30%, #cfcfcf 55%, #fff 80%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  h1 { color: var(--text); font-weight: 900; font-size: clamp(36px, 6vw, 56px); letter-spacing: -0.04em; line-height: 1.05; margin: 28px 0 12px; }
+  .updated { color: var(--dim); font-size: 14px; margin: 0; }
+
+  .summary { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 32px; }
+  .summary div { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 18px 20px; }
+  .summary b { display: block; color: var(--text); font-size: 16px; font-weight: 800; margin-bottom: 4px; }
+  .summary span { color: var(--dim); font-size: 14px; line-height: 1.5; }
+
+  .layout { display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: 56px; padding-block: 48px 24px; }
+  nav.toc { position: sticky; top: 24px; align-self: start; font-size: 14px; }
+  nav.toc p { color: var(--dim); font-size: 12px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; margin: 0 0 10px; }
+  nav.toc ol { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; counter-reset: t; }
+  nav.toc li { counter-increment: t; }
+  nav.toc a { color: var(--dim); text-decoration: none; display: flex; gap: 10px; }
+  nav.toc a::before { content: counter(t, decimal-leading-zero); color: #555; font-variant-numeric: tabular-nums; }
+  nav.toc a:hover { color: var(--text); }
+
+  article { max-width: 68ch; }
+  section { padding-bottom: 36px; margin-bottom: 36px; border-bottom: 1px solid var(--line); scroll-margin-top: 24px; }
+  section:last-child { border-bottom: 0; }
+  h2 { color: var(--text); font-size: 24px; font-weight: 800; letter-spacing: -0.02em; line-height: 1.25; margin: 0 0 14px; display: flex; gap: 12px; align-items: baseline; }
+  h2 small { color: #555; font-size: 15px; font-weight: 600; font-variant-numeric: tabular-nums; }
+  h3 { color: var(--text); font-size: 16px; font-weight: 700; margin: 22px 0 6px; }
+  p { margin: 0 0 14px; }
+  ul { margin: 0 0 14px; padding-left: 20px; }
+  li { margin-bottom: 8px; }
+  li::marker { color: #666; }
+  strong { color: var(--text); font-weight: 600; }
+  .note { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 14px 18px; font-size: 15px; }
+  .rights { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; margin: 0 0 16px; padding: 0; list-style: none; }
+  .rights li { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 10px 14px; margin: 0; font-size: 15px; }
+  .contact { display: inline-block; font-weight: 700; background: #fff; color: #000; text-decoration: none; border-radius: 99px; padding: 12px 20px; margin-top: 4px; }
+
+  footer { border-top: 1px solid var(--line); padding: 28px 0 44px; color: var(--dim); font-size: 14px; }
+  footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px 24px; }
+  footer a { text-decoration: none; font-weight: 600; }
+
+  @media (max-width: 820px) {
+    header { padding: 44px 0 32px; }
+    .summary { grid-template-columns: 1fr; }
+    .layout { grid-template-columns: 1fr; gap: 32px; padding-block-start: 32px; }
+    nav.toc { position: static; }
+    .rights { grid-template-columns: 1fr; }
+  }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <a class="brand" href="./">Bindly</a>
+    <h1>Informativa sulla privacy</h1>
+    <p class="updated">Ultimo aggiornamento: 24 novembre 2026</p>
+    <div class="summary">
+      <div><b>Senza account, nulla esce dal telefono</b><span>Collezione e wishlist restano solo sul tuo dispositivo.</span></div>
+      <div><b>Niente pubblicità né tracciamento</b><span>Non vendiamo i dati e non usiamo strumenti di analisi.</span></div>
+      <div><b>Elimini tutto quando vuoi</b><span>Profilo → Elimina account cancella subito ogni dato.</span></div>
+    </div>
+  </div>
+</header>
+
+<div class="wrap layout">
+  <nav class="toc" aria-label="Indice">
+    <p>Indice</p>
+    <ol>
+      <li><a href="#titolare">Titolare</a></li>
+      <li><a href="#dati">Dati raccolti</a></li>
+      <li><a href="#finalita">Perché li usiamo</a></li>
+      <li><a href="#fornitori">Con chi li condividiamo</a></li>
+      <li><a href="#conservazione">Conservazione</a></li>
+      <li><a href="#diritti">I tuoi diritti</a></li>
+      <li><a href="#minori">Minori</a></li>
+      <li><a href="#modifiche">Modifiche</a></li>
+      <li><a href="#contatti">Contatti</a></li>
+    </ol>
+  </nav>
+
+  <article>
+    <section id="titolare">
+      <h2><small>01</small>Chi è il titolare</h2>
+      <p>Il titolare del trattamento dei dati è <strong>Bindly team</strong>, che sviluppa l'app Bindly. Per qualsiasi domanda sulla privacy o per esercitare i tuoi diritti scrivi a <a href="mailto:c.bindly.app@gmail.com">c.bindly.app@gmail.com</a>.</p>
+    </section>
+
+    <section id="dati">
+      <h2><small>02</small>Quali dati raccogliamo</h2>
+      <p class="note">Puoi usare Bindly anche senza account: in quel caso collezione, wishlist e preferenze restano solo sul tuo telefono e non ci vengono inviate.</p>
+      <p>Se crei un account raccogliamo:</p>
+      <ul>
+        <li><strong>Dati dell'account</strong>: indirizzo email, nome (se lo fornisce Apple o Google al momento dell'accesso), metodo di accesso usato (email, Apple o Google), date di registrazione e ultimo accesso.</li>
+        <li><strong>Dati della collezione</strong>: le carte che aggiungi al Vault (carta, condizione, lingua, quantità, prezzo d'acquisto se lo inserisci) e alla wishlist (prezzo massimo, sconto minimo, lingue e condizione desiderate).</li>
+        <li><strong>Preferenze</strong>: soglia di sconto per gli avvisi, ora del riepilogo giornaliero, piano (Free o Pro) e relativa scadenza.</li>
+        <li><strong>Notifiche</strong>: se le attivi, un identificativo del dispositivo per l'invio delle notifiche push (token push) e il sistema operativo (iOS o Android).</li>
+        <li><strong>Segnalazioni</strong>: se segnali un'inserzione eBay come errata o sospetta, salviamo la segnalazione collegata al tuo account.</li>
+        <li><strong>Dati tecnici</strong>: per proteggere il servizio dagli abusi conteggiamo per un breve periodo le richieste fatte ai nostri server.</li>
+      </ul>
+      <p>Non raccogliamo la tua posizione, i contatti, le foto o dati di pagamento. Non usiamo strumenti di analisi o di pubblicità che ti tracciano.</p>
+    </section>
+
+    <section id="finalita">
+      <h2><small>03</small>Perché usiamo i dati</h2>
+      <ul>
+        <li><strong>Per fornirti l'app</strong>: creare l'account, salvare e sincronizzare la collezione tra i tuoi dispositivi, inviarti gli avvisi che hai chiesto. Base giuridica: esecuzione del servizio che hai richiesto.</li>
+        <li><strong>Per inviarti le notifiche push</strong>, solo se le attivi. Base giuridica: consenso, revocabile in qualsiasi momento dalle impostazioni del telefono.</li>
+        <li><strong>Per la sicurezza del servizio</strong> e per prevenire gli abusi. Base giuridica: legittimo interesse.</li>
+      </ul>
+      <p>Non vendiamo i tuoi dati e non li usiamo per pubblicità.</p>
+    </section>
+
+    <section id="fornitori">
+      <h2><small>04</small>Con chi condividiamo i dati</h2>
+      <p>Usiamo fornitori che trattano i dati per nostro conto e solo per far funzionare l'app:</p>
+      <ul>
+        <li><strong>Supabase</strong> (database e autenticazione): i dati sono conservati su server nell'Unione Europea (Irlanda).</li>
+        <li><strong>Google</strong> e <strong>Apple</strong>: se scegli "Continua con Google" o "Continua con Apple", l'accesso avviene tramite loro, che ci comunicano email e nome secondo le loro informative.</li>
+        <li><strong>Brevo</strong>: invio delle email con il codice di accesso.</li>
+        <li><strong>Expo</strong>, <strong>Apple</strong> e <strong>Google</strong>: consegna delle notifiche push e degli aggiornamenti dell'app.</li>
+        <li><strong>eBay</strong>: per trovare le inserzioni inviamo a eBay i nomi delle carte da cercare, mai i tuoi dati personali. I link alle inserzioni possono contenere un codice affiliato dell'eBay Partner Network: se acquisti, Bindly può ricevere una commissione senza costi per te. Quando apri un'inserzione si applica l'informativa privacy di eBay.</li>
+        <li><strong>Pokémon TCG API</strong> e <strong>OPTCG API</strong>: immagini e dati delle carte vengono scaricati dai loro server, che possono vedere l'indirizzo IP del tuo dispositivo.</li>
+      </ul>
+      <p>Alcuni di questi fornitori hanno sede negli Stati Uniti. In quel caso il trasferimento avviene con le garanzie previste dal GDPR (Data Privacy Framework UE-USA o clausole contrattuali standard).</p>
+    </section>
+
+    <section id="conservazione">
+      <h2><small>05</small>Per quanto tempo li conserviamo</h2>
+      <p>Conserviamo i dati finché hai un account. Puoi eliminarlo in qualsiasi momento dall'app, in <strong>Profilo → Elimina account</strong>: l'eliminazione cancella subito account, collezione, wishlist, preferenze, token push e segnalazioni.</p>
+      <p>I conteggi tecnici delle richieste vengono cancellati automaticamente entro un giorno.</p>
+    </section>
+
+    <section id="diritti">
+      <h2><small>06</small>I tuoi diritti</h2>
+      <p>In base al GDPR puoi chiederci in qualsiasi momento di:</p>
+      <ul class="rights">
+        <li>accedere ai tuoi dati</li>
+        <li>correggerli</li>
+        <li>cancellarli</li>
+        <li>limitarne il trattamento</li>
+        <li>opporti al trattamento</li>
+        <li>riceverli in un formato leggibile</li>
+      </ul>
+      <p>Puoi anche revocare il consenso alle notifiche. Scrivi a <a href="mailto:c.bindly.app@gmail.com">c.bindly.app@gmail.com</a>: rispondiamo entro 30 giorni.</p>
+      <p>Se ritieni che i tuoi dati siano trattati in modo non corretto puoi presentare reclamo al <a href="https://www.garanteprivacy.it" target="_blank" rel="noopener">Garante per la protezione dei dati personali</a>.</p>
+    </section>
+
+    <section id="minori">
+      <h2><small>07</small>Minori</h2>
+      <p>Bindly non è destinata ai minori di 14 anni. Se sei un genitore e pensi che tuo figlio ci abbia fornito dati, scrivici e li cancelleremo.</p>
+    </section>
+
+    <section id="modifiche">
+      <h2><small>08</small>Modifiche</h2>
+      <p>Se cambiamo questa informativa aggiorniamo la data in alto. Per le modifiche importanti ti avvisiamo nell'app.</p>
+    </section>
+
+    <section id="contatti">
+      <h2><small>09</small>Contatti</h2>
+      <p>Bindly team, titolare del trattamento.</p>
+      <a class="contact" href="mailto:c.bindly.app@gmail.com">c.bindly.app@gmail.com</a>
+    </section>
+  </article>
+</div>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 Bindly</span>
+    <a href="./">Torna alla home</a>
+  </div>
+</footer>
+
+</body>
+</html>
